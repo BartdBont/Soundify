@@ -1,5 +1,6 @@
 .sidebar {
-    height: 100vh;
+    /*keep height in check */
+    height: auto;
     flex: 0.2;
     color: white;
     padding-left: 10px;
@@ -19,4 +20,24 @@
     margin-left: 10px;
     padding: 5px;
     font-size: 12px;
+}
+
+img:hover {
+    cursor: pointer;
+}
+
+.addIcon {
+    flex: 0.2;
+    display: flex;
+    margin-left: auto;
+}
+
+.addIcon:hover {
+    cursor: pointer;
+    color: #1ed15e;
+}
+
+.playlist {
+    justify-content: space-between;
+    display: flex;
 }
