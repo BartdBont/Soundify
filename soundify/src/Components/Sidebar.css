@@ -21,3 +21,23 @@
     padding: 5px;
     font-size: 12px;
 }
+
+img:hover {
+    cursor: pointer;
+}
+
+.addIcon {
+    flex: 0.2;
+    display: flex;
+    margin-left: auto;
+}
+
+.addIcon:hover {
+    cursor: pointer;
+    color: #1ed15e;
+}
+
+.playlist {
+    justify-content: space-between;
+    display: flex;
+}

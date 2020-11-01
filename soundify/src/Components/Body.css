@@ -55,6 +55,7 @@
 .body__shuffle:hover {
     transition: 100ms transform ease-in;
     transform: scale(1.08);
+    color: #1ed15e;
 }
 
 .body__songs {

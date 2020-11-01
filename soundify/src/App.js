@@ -4,7 +4,7 @@ import Login from './Components/Login';
 import { getTokenFromUrl } from './spotify';
 import SpotifyWebApi from "spotify-web-api-js";
 import Player from './Components/Player';
-import { useStateProviderValue } from './StateProvider'
+import { useStateProviderValue } from './StateProvider';
 
 const spotify = new SpotifyWebApi();
 

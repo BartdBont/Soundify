@@ -12,6 +12,7 @@
 
 .footer__right * .MuiSlider-root {
     color: #1ed15e;
+    width: 75%;
 }
 
 .footer__left {
