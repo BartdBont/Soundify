@@ -33,7 +33,7 @@ function Body({ spotify }) {
                 {discover_weekly?.tracks.items.map(item => (
                     <SongRow track={item.track} />
                 ))}
-                {console.log(discover_weekly?.tracks.items)}
+                {/* {console.log(discover_weekly?.tracks.items)} */}
             </div>
         </div>
     )

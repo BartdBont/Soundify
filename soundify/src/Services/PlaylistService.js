@@ -19,6 +19,13 @@ class PlaylistService {
             return response.data;
         })
     }
+
+    getPlaylist(id) {
+        return instance.get(`playlists/${id}`)
+        .then(response => {
+            return response.data;
+        })
+    }
 }
 
 export default new PlaylistService();
