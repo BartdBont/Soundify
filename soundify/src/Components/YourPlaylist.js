@@ -49,7 +49,7 @@ function YourPlaylist({ spotify }) {
 				</div>
 
 				{playlist?.songs.length ? (
-					playlist?.songs.map((item) => <SongRow track={item} />)
+					playlist?.songs.map((song) => <SongRow song={song} />)
 				) : (
 					<EmptyPlaylist />
 				)}
