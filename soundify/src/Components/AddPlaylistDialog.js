@@ -2,7 +2,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } 
 import React, { useState } from 'react'
 import PlaylistService from '../Services/PlaylistService';
 
-function AddPlaylistDialog({ open, setOpen }) {
+function AddPlaylistDialog({ open, setOpen, setEdited }) {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
 
@@ -15,8 +15,8 @@ function AddPlaylistDialog({ open, setOpen }) {
         PlaylistService.createPlaylist(playlist)
         .then((response) => {
             console.log(response);
+            setEdited(true);
         });
-        document.location.reload();
         setOpen(false);
     }
     return (

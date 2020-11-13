@@ -1,16 +1,17 @@
 import React from 'react';
 import './SongRow.css';
 
-function SongRow({track}) {
+function SongRow({song}) {
     return (
         <div className="songRow">
-            <img className="songRow__album" src={track.album.images[0].url} alt="" />
+            <img className="songRow__album" src={song?.album?.image} alt="" />
             <div className="songRow__info">
-                <h1>{track.name}</h1>
+                <h1>{song?.name}</h1>
                 <p>
-                    {track.artists.map((artist) => artist.name).join(", ")} -{" "}
-                    {track.album.name}
+                    {song?.artist?.map((artist) => artist?.name).join(", ")} -{" "}
+                    {song?.album?.name}
                 </p>
+                
             </div>
         </div>
     )
