@@ -15,6 +15,7 @@ function Sidebar() {
     const [{playlists}, dispatch] = useStateProviderValue();
     const [open, setOpen] = useState(false);
     const [playlistss, setPlaylistss] = useState();
+    const [edited, setEdited] = useState(false);
 
     const handleClick = () => {
         history.push("/");
@@ -27,20 +28,20 @@ function Sidebar() {
     const getAllPlaylists = () => {
         PlaylistService.getPlaylists()
         .then((response) => {
-            console.log(response);
             setPlaylistss(response);
         });
     }
 
     useEffect(() => {
         getAllPlaylists();
-    }, [])
+        setEdited(false);
+    }, [edited])
 
     return (
         <div className="sidebar">
             <img className="sidebar__logo" src="https://i.imgur.com/dT8rSvy.png" alt="" onClick={handleClick}/>
             <SidebarOption Icon={HomeIcon} title="Home" linkto="/"/>
-            <SidebarOption Icon={SearchIcon} title="Search" />
+            <SidebarOption Icon={SearchIcon} title="Search" linkto="/search" />
             <SidebarOption Icon={LibraryMusicIcon} title="Your Library" linkto="/your_library"/>
 
             <br />
@@ -48,7 +49,7 @@ function Sidebar() {
             <strong className="sidebar__title">PLAYLISTS</strong>
             <AddIcon className="addIcon" fontSize="small" onClick={handleAddPlaylist}/>
             </div>
-            <AddPlaylistDialog open={open} setOpen={setOpen}/>
+            <AddPlaylistDialog open={open} setOpen={setOpen} setEdited={setEdited}/>
             <hr />
             
             {playlistss?.map((playlist, id) => (

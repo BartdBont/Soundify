@@ -6,6 +6,7 @@ import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import PlaylistService from "../Services/PlaylistService";
+import "./YourPlaylist.css";
 
 function YourPlaylist({ spotify }) {
 	const [playlist, setPlaylist] = useState();
@@ -22,7 +23,7 @@ function YourPlaylist({ spotify }) {
 	}, [id]);
 
 	const EmptyPlaylist = () => (
-		<div>
+		<div className="emptyPlaylist">
 			<h1>This playlist is currently empty</h1>
 			<h4>Find more of the music you love in the charts</h4>
 		</div>
