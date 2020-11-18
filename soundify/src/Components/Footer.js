@@ -9,6 +9,7 @@ import { Grid, Slider } from '@material-ui/core';
 import PlaylistPlayIcon from "@material-ui/icons/PlaylistPlay";
 import VolumeDownIcon from "@material-ui/icons/VolumeDown";
 import PauseCircleOutlineIcon from '@material-ui/icons/PauseCircleOutline';
+import VolumeUpIcon from '@material-ui/icons/VolumeUp';
 import VolumeOffIcon from '@material-ui/icons/VolumeOff';
 import Streamer from './Streamer';
 
@@ -16,6 +17,7 @@ function Footer() {
     const [playing, setPlaying] = useState(false);
     const [paused, setPaused] = useState(true);
     const [muted, setMuted] = useState(false);
+    const [loop, setLoop] = useState(false);
     const [volume, setVolume] = useState(30);
 
     const handlePlayPause = () => {
@@ -27,10 +29,14 @@ function Footer() {
         setMuted(!muted);
     };
 
+    const handleLoop = () => {
+        setLoop(!loop);
+    }
+
     const handleVolumeChange = (event, newValue) => {
         setVolume(newValue);
         if (newValue < 1) setMuted(true);
-        else if (muted) setMuted(false);
+        else if (muted) toggleMute();
     };
 
     return (
@@ -48,8 +54,8 @@ function Footer() {
                 <SkipPreviousIcon className="footer__icon"/>
                 {!playing ? <PlayCircleOutlineIcon fontSize="large" className="footer__icon" onClick={handlePlayPause}/> : <PauseCircleOutlineIcon fontSize="large" className="footer__icon" onClick={handlePlayPause}/> }
                 <SkipNextIcon className="footer__icon"/>
-                <RepeatIcon className="footer__green"/>
-                <Streamer paused={paused} muted={muted} volume={volume} id="AaxFIY-cWH0"/>
+                {loop ? <RepeatIcon className="footer__green" onClick={handleLoop}/> : <RepeatIcon onClick={handleLoop}/>}
+                <Streamer paused={paused} muted={muted} volume={volume} loop={loop} id="-GXGkHdK9CM"/>
             </div>
 
             <div className="footer__right">
@@ -58,7 +64,7 @@ function Footer() {
                         <PlaylistPlayIcon />
                     </Grid>
                     <Grid item>
-                        {!muted ? <VolumeDownIcon onClick={toggleMute} /> : <VolumeOffIcon onClick={toggleMute} />}
+                        {muted ? <VolumeOffIcon onClick={toggleMute} /> : volume > 50 ? <VolumeUpIcon onClick={toggleMute} /> : <VolumeDownIcon onClick={toggleMute} />}
                     </Grid>
                     <Grid item xs>
                         <Slider value={volume} onChange={handleVolumeChange}/>

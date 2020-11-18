@@ -1,42 +1,38 @@
 import React, { useEffect } from 'react'
 import YouTube from 'react-youtube'
 
-var cElement = null;
-function Streamer({ paused, muted, volume, id}) {
+var container = null;
+function Streamer({ paused, muted, volume, id, loop}) {
     console.log(paused, muted, volume, id);
     const opts = {
         height: '0',
         width: '0',
         playerVars: {
-            autoplay: 1,
+            autoplay: -1,
         },
     };
 
     useEffect(() => {
-        if (cElement) {
-            paused
-                ? cElement.target.pauseVideo()
-                : cElement.target.playVideo() 
-                // && cElement.target.setVolume(90);
-
+        if (container) {
+            paused ? container.target.pauseVideo()
+                : container.target.playVideo() 
         }
     },
         [paused]
     );
 
     useEffect(() => {
-        if (cElement) {
-            muted
-                ? cElement.target.mute()
-                : cElement.target.unMute();
+        if (container) {
+            muted ? container.target.mute()
+                : container.target.unMute();
         }
     },
         [muted]
     );
 
     useEffect(() => {
-        if(cElement){
-            cElement.target.setVolume(volume);
+        if(container){
+            container.target.setVolume(volume);
         }        
     },
         [volume]
@@ -44,8 +40,7 @@ function Streamer({ paused, muted, volume, id}) {
 
     const _onReady = event => {
         // console.log("_onReady");
-        cElement = event;
-        event.target.pauseVideo();
+        container = event;
         // console.log(props.volume)
         event.target.setVolume(volume);
         // setIsPaused(!isPaused);
@@ -53,12 +48,14 @@ function Streamer({ paused, muted, volume, id}) {
         // props.isPaused(!props.isPaused);
         // props.isPaused = true;
         var state = paused;
-        console.log(state);
         // props.isPaused(!state);
     };
 
-    const _onStateChange = event => {
-        // event.target.pauseVideo();
+    const _onStateChange = (e) => {
+        //if ended
+        if (e.data === 0 && loop) {
+            e.target.seekTo(0);
+        }
     };
 
     return (
@@ -66,7 +63,7 @@ function Streamer({ paused, muted, volume, id}) {
             videoId={id}
             opts={opts}
             onReady={_onReady}
-            // onStateChange={_onStateChange}
+            onStateChange={_onStateChange}
         />
     );
 }
