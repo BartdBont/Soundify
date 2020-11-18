@@ -24,7 +24,7 @@ function SearchResult({ spotify }) {
 
 	const Result = () => {
 		return result?.length ? (
-			result?.map((song) => <SongRow song={song} />)
+			result?.map((song, idx) => <SongRow song={song} key={idx} />)
 		) : (
 			<h1 className="empty">no song found</h1>
 		);
@@ -44,9 +44,7 @@ function SearchResult({ spotify }) {
 	};
 
 	return (
-		<div className="body">
-			<Header spotify={spotify} />
-
+		<div>
 			<div className="body__info">
 				<div className="body__infoText">
 					{termKnown ? <SearchTermKnown/> : <SearchTermUnknown/>}
