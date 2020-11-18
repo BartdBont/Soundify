@@ -8,8 +8,8 @@ import RepeatIcon from "@material-ui/icons/Repeat";
 import { Grid, Slider } from '@material-ui/core';
 import PlaylistPlayIcon from "@material-ui/icons/PlaylistPlay";
 import VolumeDownIcon from "@material-ui/icons/VolumeDown";
-import YouTube from 'react-youtube';
-import YouTubePlayer from 'youtube-player';
+import PauseCircleOutlineIcon from '@material-ui/icons/PauseCircleOutline';
+import VolumeOffIcon from '@material-ui/icons/VolumeOff';
 import Streamer from './Streamer';
 
 function Footer() {
@@ -28,9 +28,9 @@ function Footer() {
     };
 
     const handleVolumeChange = (event, newValue) => {
-        if(newValue)
         setVolume(newValue);
-        console.log(volume);
+        if (newValue < 1) setMuted(true);
+        else if (muted) setMuted(false);
     };
 
     return (
@@ -46,7 +46,7 @@ function Footer() {
             <div className="footer__center">
                 <ShuffleIcon className="footer__green"/>
                 <SkipPreviousIcon className="footer__icon"/>
-                <PlayCircleOutlineIcon fontSize="large" className="footer__icon" onClick={handlePlayPause}/>
+                {!playing ? <PlayCircleOutlineIcon fontSize="large" className="footer__icon" onClick={handlePlayPause}/> : <PauseCircleOutlineIcon fontSize="large" className="footer__icon" onClick={handlePlayPause}/> }
                 <SkipNextIcon className="footer__icon"/>
                 <RepeatIcon className="footer__green"/>
                 <Streamer paused={paused} muted={muted} volume={volume} id="AaxFIY-cWH0"/>
@@ -58,10 +58,10 @@ function Footer() {
                         <PlaylistPlayIcon />
                     </Grid>
                     <Grid item>
-                        <VolumeDownIcon onClick={toggleMute} />
+                        {!muted ? <VolumeDownIcon onClick={toggleMute} /> : <VolumeOffIcon onClick={toggleMute} />}
                     </Grid>
                     <Grid item xs>
-                        <Slider />
+                        <Slider value={volume} onChange={handleVolumeChange}/>
                     </Grid>
                 </Grid>
             </div>
