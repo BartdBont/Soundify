@@ -52,7 +52,6 @@ function YourPlaylist({ spotify }) {
 				) : (
 					<EmptyPlaylist />
 				)}
-				{/* {console.log(discover_weekly?.tracks.items)} */}
 			</div>
 		</div>
 	);

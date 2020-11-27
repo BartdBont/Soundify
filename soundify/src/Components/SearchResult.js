@@ -6,25 +6,30 @@ import SongRow from "./SongRow";
 import "./SearchResult.css";
 
 function SearchResult({ spotify }) {
-	const [result, setResult] = useState();
+	const [result, setResult] = useState([]);
 	let { term } = useParams();
 	const [termKnown, setTermKnown] = useState(term !== undefined ? true : false);
+	const [items, setItems] = useState(10);
 
 	useEffect(() => {
 		if (term !== undefined) {
 			SearchService.getSearchResult(term).then((response) => {
-				console.log(response);
 				setResult(response);
 			});
 			setTermKnown(true);
 		} else {
 			setTermKnown(false);
 		}
+		setItems(10);
 	}, [term]);
+
+	const SeeMore = () => {
+		setItems(items + 10);
+	}
 
 	const Result = () => {
 		return result?.length ? (
-			result?.map((song, idx) => <SongRow song={song} key={idx} />)
+			result?.slice(0, items).map((song, idx) => <SongRow song={song} key={idx} />)
 		) : (
 			<h1 className="empty">no song found</h1>
 		);
@@ -51,7 +56,14 @@ function SearchResult({ spotify }) {
 				</div>
 			</div>
 
-			<div className="body__songs">{termKnown && <Result />}</div>
+			<div className="body__songs">
+				{termKnown && <Result />}
+				{
+					items >= 50 ? <h4> </h4> :
+					termKnown ? <h4 className="viewMore" onClick={() => SeeMore()}>More results</h4> :
+					<h4> </h4>
+				}
+			</div>
 		</div>
 	);
 }
