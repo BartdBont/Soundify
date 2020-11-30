@@ -2,10 +2,12 @@ import React from 'react'
 import { useStateProviderValue } from '../StateProvider';
 import './Body.css';
 import Header from './Header';
-import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import SongRow from './SongRow';
+import YourLibrary from './YourLibrary';
+import YourPlaylist from './YourPlaylist';
+import SearchResult from './SearchResult';
+import notFoundPage from './notFoundPage';
+import { Redirect, Route, Switch } from 'react-router-dom';
+import DiscoverWeekly from './DiscoverWeekly';
 
 function Body({ spotify }) {
     const [{discover_weekly}, dispatch] = useStateProviderValue();
@@ -14,27 +16,17 @@ function Body({ spotify }) {
         <div className="body">
             <Header spotify={spotify} />
 
-            <div className="body__info">
-                {/* <img src={discover_weekly?.images[0].url} alt="" /> */}
-                <div className="body__infoText">
-                    <strong>PLAYLIST</strong>
-                    <h2>Discover Weekly</h2>
-                    <p>{discover_weekly?.description}</p>
-                </div>
-            </div>
+            <Switch>
+                <Route exact path="/" component={DiscoverWeekly}/>
+                <Route exact path="/your_library" component={YourLibrary}/>
+                <Route exact path="/your_playlist/:id" component={YourPlaylist}/>
+                <Route exact path="/search/:term" component={SearchResult}/>
+                <Route exact path="/search" component={SearchResult}/>
+                {/* <Body spotify={spotify} /> */}
 
-            <div className="body__songs">
-                <div className="body__icons">
-                    <PlayCircleFilledIcon className="body__shuffle"/>
-                    <FavoriteIcon fontSize="large" />
-                    <MoreHorizIcon/>
-                </div>
-
-                {discover_weekly?.tracks.items.map(item => (
-                    <SongRow track={item.track} />
-                ))}
-                {/* {console.log(discover_weekly?.tracks.items)} */}
-            </div>
+                <Route exact path="/404" component={notFoundPage}/>
+                <Redirect to="/404"/>
+            </Switch>
         </div>
     )
 }

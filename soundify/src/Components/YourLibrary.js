@@ -6,18 +6,18 @@ function YourLibrary() {
         height: '390',
         width: '640',
         playerVars: {
-            autoplay: 1,
+            autoplay: -1,
         },
     };
 
     const handleReady = (e) => {
-        e.target.pauseVideo();
+        // e.target.pauseVideo();
     }
 
     return (
         <div>
             <h1>Your library</h1>
-            <YouTube videoId="US23A1500072" opts={opts} onReady={handleReady} />
+            <YouTube videoId="83xBPCw5hh4" opts={opts} onReady={handleReady} />
         </div>
     )
 }
