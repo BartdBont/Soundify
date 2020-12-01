@@ -20,11 +20,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - run: cd soundify
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
+      working-directory: ./soundify
     - run: npm run build --if-present
+      working-directory: ./soundify
     - run: npm test
+      working-directory: ./soundify
