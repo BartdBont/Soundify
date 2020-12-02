@@ -5,8 +5,6 @@ import { useStateProviderValue } from '../StateProvider';
 var container = null;
 function Streamer({ paused, muted, volume, id, loop}) {
     const [{song}, dispatch] = useStateProviderValue();
-    console.log(song);
-    console.log(paused, muted, volume, id);
     const opts = {
         height: '0',
         width: '0',
@@ -19,7 +17,6 @@ function Streamer({ paused, muted, volume, id, loop}) {
         if (container) {
             container.target.playVideo();
         }
-        console.log("songchanged")
     }, [song])
 
     useEffect(() => {
