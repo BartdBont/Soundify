@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiUrl = "http://localhost:8080/spotify/v1/";
-const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiZXhwIjoxNjA2NTE4Mzk2LCJpYXQiOjE2MDY0ODIzOTZ9.d8kKQQh61BeH3gjilVIPOkfpuZ5ThgW0GgF2eVb11CI";
+const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiZXhwIjoxNjA2ODY4MDA3LCJpYXQiOjE2MDY4MzIwMDd9.fWQj326lHBU7rwWRSIaGwupQ8BjHPmFxp6YBBcTNP44";
 const instance = axios.create({
     baseURL: apiUrl,
     headers: { Authorization: "Bearer " + token },

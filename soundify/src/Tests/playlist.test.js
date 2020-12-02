@@ -24,23 +24,46 @@ afterEach(() => {
     container = null;
 });
 
-it("renders with or without songs", () => {
+// const getPlaylist = require('../Components/YourPlaylist')
+const axios = require('axios');
+
+jest.mock(('axios'), () => ({
+    ...jest.requireActual('axios'),
+    instance : axios.create({
+        baseURL: "none",
+    }),
+}))
+
+it("renders with or without songs", async () => {
     const fakePlaylist = {
         name: "vibes",
     };
+
+    // axios.get.mockResolvedValue({
+    //     data: [
+    //         {
+    //             name: "vibes"
+    //         }
+    //     ]
+    // })
+
+    // console.log(global)
+
+    const spy = jest.spyOn(axios, "get").mockImplementation(() => {
+        Promise.resolve({
+            json: () => Promise.resolve(fakePlaylist)
+        })
+    })
 
     act(() => {
         render(<YourPlaylist />, container);
     });
 
-    // const spy = jest.spyOn(YourPlaylist.prototype, `setPlaylist`).mockImplementation(() => {
-    //     Promise.resolve({
-    //         json: () => Promise.resolve(fakePlaylist)
-    //     })
-    // })
+    
 
-    // expect(spy).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalled();
     expect(container.querySelector("strong").textContent).toBe("PLAYLIST");
-    // expect(container.YourPlaylist.playlist).toBe(fakePlaylist.name);
+    // expect(container.querySelector("h2").textContent).toContain("vibes");
 
+    jest.resetAllMocks();
 });

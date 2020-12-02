@@ -1,3 +1,4 @@
+import { MoreHoriz } from '@material-ui/icons';
 import React from 'react';
 import { useStateProviderValue } from '../StateProvider';
 import './SongRow.css';
@@ -22,6 +23,9 @@ function SongRow({song}) {
                     {song?.album?.name}
                 </p>
                 
+            </div>
+            <div className="songRow__options">
+                <MoreHoriz/>
             </div>
         </div>
     )
