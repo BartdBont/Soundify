@@ -4,7 +4,7 @@ import { useStateProviderValue } from '../StateProvider';
 
 var container = null;
 function Streamer({ paused, muted, volume, id, loop}) {
-    const [{song}, dispatch] = useStateProviderValue();
+    const [{song}, ] = useStateProviderValue();
     const opts = {
         height: '0',
         width: '0',
@@ -54,7 +54,6 @@ function Streamer({ paused, muted, volume, id, loop}) {
         // event.target.loadVideo();
         // props.isPaused(!props.isPaused);
         // props.isPaused = true;
-        var state = paused;
         // props.isPaused(!state);
     };
 

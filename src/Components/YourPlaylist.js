@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Header from "./Header";
 import SongRow from "./SongRow";
 import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
 import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -12,14 +11,10 @@ function YourPlaylist({ spotify }) {
 	const [playlist, setPlaylist] = useState();
 	const { id } = useParams();
 
-	const getPlaylist = () => {
+	useEffect(() => {
 		PlaylistService.getPlaylist(id).then((response) => {
 			setPlaylist(response);
 		});
-	};
-
-	useEffect(() => {
-		getPlaylist();
 	}, [id]);
 
 	const EmptyPlaylist = () => (

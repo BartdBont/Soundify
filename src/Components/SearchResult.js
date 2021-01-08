@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import SearchService from "../Services/SearchService";
-import Header from "./Header";
 import SongRow from "./SongRow";
 import "./SearchResult.css";
 

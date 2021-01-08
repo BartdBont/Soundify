@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 
 function Header() {
 	let history = useHistory();
-	const [{ user }, dispatch] = useStateProviderValue();
+	const [{ user },] = useStateProviderValue();
 	const [term, setTerm] = useState("");
 
 	const handleKeyDown = (event) => {

@@ -4,7 +4,7 @@ import { useStateProviderValue } from '../StateProvider';
 import './SongRow.css';
 
 function SongRow({song}) {
-    const [provider, dispatch] = useStateProviderValue();
+    const [, dispatch] = useStateProviderValue();
 
     const PlaySong = () => {
         dispatch({

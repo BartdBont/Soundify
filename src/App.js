@@ -9,7 +9,7 @@ import { useStateProviderValue } from './StateProvider';
 const spotify = new SpotifyWebApi();
 
 function App() {
-  const [{ user, token }, dispatch] = useStateProviderValue();
+  const [{ token }, dispatch] = useStateProviderValue();
 
   // Run code based on a given condition
   useEffect(() => {
@@ -45,7 +45,7 @@ function App() {
         });
       });
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     // BEM

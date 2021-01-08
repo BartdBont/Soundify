@@ -1,5 +1,4 @@
 import React from 'react'
-import { useStateProviderValue } from '../StateProvider';
 import './Body.css';
 import Header from './Header';
 import YourLibrary from './YourLibrary';
@@ -10,7 +9,6 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import DiscoverWeekly from './DiscoverWeekly';
 
 function Body({ spotify }) {
-    const [{discover_weekly}, dispatch] = useStateProviderValue();
 
     return (
         <div className="body">
