@@ -1,5 +1,4 @@
 import React from 'react'
-import { useStateProviderValue } from '../StateProvider';
 import './Body.css';
 import Header from './Header';
 import YourLibrary from './YourLibrary';
@@ -10,14 +9,14 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import DiscoverWeekly from './DiscoverWeekly';
 
 function Body({ spotify }) {
-    const [{discover_weekly}, dispatch] = useStateProviderValue();
 
     return (
         <div className="body">
             <Header spotify={spotify} />
 
             <Switch>
-                <Route exact path="/" component={DiscoverWeekly}/>
+                <Route exact path="/home" component={DiscoverWeekly}/>
+                <Route exact path="/Soundify" component={DiscoverWeekly}/>
                 <Route exact path="/your_library" component={YourLibrary}/>
                 <Route exact path="/your_playlist/:id" component={YourPlaylist}/>
                 <Route exact path="/search/:term" component={SearchResult}/>

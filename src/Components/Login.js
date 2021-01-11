@@ -12,6 +12,7 @@ import {
 	Container,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import AuthenticationService from "../Services/AuthenticationService";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -34,9 +35,19 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 function Login() {
-    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const classes = useStyles();
+	const classes = useStyles();
+	
+	const login = (e) => {
+		e.preventDefault();
+		AuthenticationService.authenticate(username, password).then((response) => {
+			if (response) {
+				document.location.replace("/home");
+			}
+			return;
+		})
+	}
 	return (
 		<Container maxWidth="xs" component="main">
 			<div className="login">
@@ -51,10 +62,10 @@ function Login() {
 							margin="normal"
 							required
 							fullWidth
-							id="email"
-							label="Email Address"
-                            name="email"
-                            onChange={(e) => setEmail(e.currentTarget.value)}
+							id="username"
+							label="Username"
+                            name="username"
+                            onChange={(e) => setUsername(e.currentTarget.value)}
 							autoComplete="email"
 							autoFocus
 						/>
@@ -74,7 +85,7 @@ function Login() {
 							control={<Checkbox value="remember" color="primary" />}
 							label="Remember me"
 						/>
-						<Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} onClick={console.log(`${email} and ${password}`)}>
+						<Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} onClick={login}>
 							Sign In
 						</Button>
 						<Grid container>
