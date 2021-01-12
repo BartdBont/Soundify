@@ -3,12 +3,14 @@ import { MoreHoriz } from '@material-ui/icons';
 import React, { useState } from 'react';
 import { useStateProviderValue } from '../StateProvider';
 import AddSongToPlaylistDialog from './AddSongToPlaylistDialog';
+import DelSongFromPlaylistDialog from './DelSongFromPlaylistDialog';
 import './SongRow.css';
 
-function SongRow({song}) {
+function SongRow({song, search, playlist}) {
     const [, dispatch] = useStateProviderValue();
     const [anchorEl, setAnchorEl] = useState(null);
     const [open, setOpen] = useState(false);
+    const [openRemove, setOpenRemove] = useState(false);
 
     const handleClick = (e) => {
         setAnchorEl(e.currentTarget);
@@ -23,6 +25,12 @@ function SongRow({song}) {
     
     const addToPlaylist = (e) => {
         setOpen(true);
+        setAnchorEl(null);
+    };
+    
+    const handleRemove = (e) => {
+        setOpenRemove(true);
+        setAnchorEl(null);
 	};
 
     const PlaySong = () => {
@@ -63,11 +71,13 @@ function SongRow({song}) {
 					<MenuItem >
 						View Album
 					</MenuItem>
-					<MenuItem color="secondary">
+                    {!search && <MenuItem color="secondary" onClick={handleRemove}>
 						Remove from this playlist
-					</MenuItem>
+					</MenuItem>}
+					
 				</Menu>
                 <AddSongToPlaylistDialog open={open} setOpen={setOpen} song={song}/>
+                {!search && <DelSongFromPlaylistDialog openRemove={openRemove} setOpenRemove={setOpenRemove} song={song} playlist={playlist} />}
             </div>
         </div>
     )

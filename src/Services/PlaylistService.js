@@ -31,8 +31,15 @@ class PlaylistService {
     }
 
     addSongToPlaylist(song, playlistId) {
-        console.log(playlistId);
         return instance.post(`playlists/${playlistId}/songs`, song)
+        .then(response => {
+            return response.data;
+        })
+    }
+
+    removeSongFromPlaylist(song, playlistId) {
+        console.log(song.id)
+        return instance.delete(`playlists/${playlistId}/songs/${song.id}`)
         .then(response => {
             return response.data;
         })

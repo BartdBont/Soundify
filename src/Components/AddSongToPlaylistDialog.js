@@ -16,8 +16,6 @@ import "./AddSongToPlaylistDialog.css";
 function AddSongToPlaylistDialog({ open, setOpen, song, setEdited }) {
 	const [playlist, setPlaylist] = useState({});
     const [{ playlists }] = useStateProviderValue();
-    
-    console.log(playlist)
 
 	const handleClose = () => {
 		setOpen(false);

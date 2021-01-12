@@ -28,7 +28,7 @@ function SearchResult({ spotify }) {
 
 	const Result = () => {
 		return result?.length ? (
-			result?.slice(0, items).map((song, idx) => <SongRow song={song} key={idx} />)
+			result?.slice(0, items).map((song, idx) => <SongRow song={song} key={idx} search={true} />)
 		) : (
 			<h1 className="empty">no song found</h1>
 		);
@@ -59,7 +59,7 @@ function SearchResult({ spotify }) {
 				{termKnown && <Result />}
 				{
 					items >= 50 ? <h4> </h4> :
-					termKnown ? <h4 className="viewMore" onClick={() => SeeMore()}>More results</h4> :
+					termKnown && result.length ? <h4 className="viewMore" onClick={() => SeeMore()}>More results</h4> :
 					<h4> </h4>
 				}
 			</div>
