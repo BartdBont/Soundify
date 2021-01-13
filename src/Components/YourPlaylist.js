@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Header from "./Header";
 import SongRow from "./SongRow";
 import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
 import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -12,14 +11,10 @@ function YourPlaylist({ spotify }) {
 	const [playlist, setPlaylist] = useState();
 	const { id } = useParams();
 
-	const getPlaylist = () => {
+	useEffect(() => {
 		PlaylistService.getPlaylist(id).then((response) => {
 			setPlaylist(response);
 		});
-	};
-
-	useEffect(() => {
-		getPlaylist();
 	}, [id]);
 
 	const EmptyPlaylist = () => (
@@ -28,6 +23,10 @@ function YourPlaylist({ spotify }) {
 			<h4>Find more of the music you love in the charts</h4>
 		</div>
 	);
+
+	const handleOptions = () => {
+		//open menu to delete playlist
+	}
 
 	return (
 		<div>
@@ -44,7 +43,7 @@ function YourPlaylist({ spotify }) {
 				<div className="body__icons">
 					<PlayCircleFilledIcon className="body__shuffle" />
 					<FavoriteIcon fontSize="large" />
-					<MoreHorizIcon />
+					<MoreHorizIcon onClick={handleOptions}/>
 				</div>
 
 				{playlist?.songs.length ? (
