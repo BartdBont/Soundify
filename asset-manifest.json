@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/Soundify/static/css/main.6583e8ce.chunk.css",
-    "main.js": "/Soundify/static/js/main.ff47055a.chunk.js",
-    "main.js.map": "/Soundify/static/js/main.ff47055a.chunk.js.map",
+    "main.css": "/Soundify/static/css/main.c8b03557.chunk.css",
+    "main.js": "/Soundify/static/js/main.8fb4fd7d.chunk.js",
+    "main.js.map": "/Soundify/static/js/main.8fb4fd7d.chunk.js.map",
     "runtime-main.js": "/Soundify/static/js/runtime-main.c129b4f9.js",
     "runtime-main.js.map": "/Soundify/static/js/runtime-main.c129b4f9.js.map",
-    "static/js/2.92fd55ac.chunk.js": "/Soundify/static/js/2.92fd55ac.chunk.js",
-    "static/js/2.92fd55ac.chunk.js.map": "/Soundify/static/js/2.92fd55ac.chunk.js.map",
+    "static/js/2.185da150.chunk.js": "/Soundify/static/js/2.185da150.chunk.js",
+    "static/js/2.185da150.chunk.js.map": "/Soundify/static/js/2.185da150.chunk.js.map",
     "index.html": "/Soundify/index.html",
-    "static/css/main.6583e8ce.chunk.css.map": "/Soundify/static/css/main.6583e8ce.chunk.css.map",
-    "static/js/2.92fd55ac.chunk.js.LICENSE.txt": "/Soundify/static/js/2.92fd55ac.chunk.js.LICENSE.txt"
+    "static/css/main.c8b03557.chunk.css.map": "/Soundify/static/css/main.c8b03557.chunk.css.map",
+    "static/js/2.185da150.chunk.js.LICENSE.txt": "/Soundify/static/js/2.185da150.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.c129b4f9.js",
-    "static/js/2.92fd55ac.chunk.js",
-    "static/css/main.6583e8ce.chunk.css",
-    "static/js/main.ff47055a.chunk.js"
+    "static/js/2.185da150.chunk.js",
+    "static/css/main.c8b03557.chunk.css",
+    "static/js/main.8fb4fd7d.chunk.js"
   ]
 }
