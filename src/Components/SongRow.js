@@ -1,23 +1,21 @@
 import { IconButton, Menu, MenuItem } from '@material-ui/core';
 import { MoreHoriz } from '@material-ui/icons';
 import React, { useState } from 'react';
-import { useStateProviderValue } from '../StateProvider';
 import AddSongToPlaylistDialog from './AddSongToPlaylistDialog';
 import DelSongFromPlaylistDialog from './DelSongFromPlaylistDialog';
 import './SongRow.css';
 
 
 function SongRow({song, search, playlist}) {
-    const [, dispatch] = useStateProviderValue();
     const [anchorEl, setAnchorEl] = useState(null);
     const [open, setOpen] = useState(false);
     const [openRemove, setOpenRemove] = useState(false);
 
     const handleClick = (e) => {
         setAnchorEl(e.currentTarget);
-        if (!e) var e = window.event;
+        if (!e) var a = window.event;
         e.cancelBubble = true;
-         if (e.stopPropagation) e.stopPropagation();
+         if (a.stopPropagation) e.stopPropagation();
     };
     
     const handleClose = () => {

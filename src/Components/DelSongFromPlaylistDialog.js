@@ -2,11 +2,7 @@ import {
 	Button,
 	Dialog,
 	DialogActions,
-	DialogContent,
 	DialogTitle,
-	Select,
-    InputLabel,
-    FormControl,
 } from "@material-ui/core";
 import React from "react";
 import PlaylistService from "../Services/PlaylistService";
