@@ -1,25 +1,30 @@
 {
   "name": "soundify",
   "version": "0.1.0",
-  "private": false,
+  "private": true,
+  "homepage": "/Soundify",
   "dependencies": {
+
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.21.1",
+
     "gh-pages": "^3.1.0",
     "react": "^16.14.0",
     "react-alert": "^7.0.2",
     "react-alert-template-oldschool-dark": "^1.0.1",
     "react-dom": "^16.14.0",
     "react-router-dom": "^5.2.0",
+
     "react-scripts": "4.0.0",
     "react-stomp": "^5.0.0",
     "react-youtube": "^7.13.0",
     "sockjs-client": "^1.5.0",
     "stompjs": "^2.3.3"
+
   },
   "scripts": {
     "start": "react-scripts start",
@@ -32,7 +37,6 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "homepage": "https://BartdBont.github.io/Soundify",
   "browserslist": {
     "production": [
       ">0.2%",

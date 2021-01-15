@@ -8,7 +8,9 @@ import AuthenticationService from "../Services/AuthenticationService";
 
 function Header() {
 	let history = useHistory();
+
 	const [{ user }, ] = useStateProviderValue();
+
 	const [term, setTerm] = useState("");
 
 	const handleKeyDown = (event) => {

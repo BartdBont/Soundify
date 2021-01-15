@@ -6,6 +6,7 @@ import AddSongToPlaylistDialog from './AddSongToPlaylistDialog';
 import DelSongFromPlaylistDialog from './DelSongFromPlaylistDialog';
 import './SongRow.css';
 
+
 function SongRow({song, search, playlist}) {
     const [, dispatch] = useStateProviderValue();
     const [anchorEl, setAnchorEl] = useState(null);
@@ -32,6 +33,7 @@ function SongRow({song, search, playlist}) {
         setOpenRemove(true);
         setAnchorEl(null);
 	};
+
 
     const PlaySong = () => {
         // dispatch({

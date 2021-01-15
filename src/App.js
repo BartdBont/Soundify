@@ -8,8 +8,10 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 
 
 function App() {
+
   const [loggedIn, setLoggedIn] = useState(false);
   const [, dispatch] = useStateProviderValue();
+
 
   // Run code based on a given condition
   useEffect(() => {
@@ -20,12 +22,14 @@ function App() {
     AuthenticationService.getCurrentUser().then((response) => {
       if (response) {
         dispatch({
+
           type: 'SET_USER',
           user: response
         })
         setLoggedIn(true);
       }
     })
+
   }, [dispatch]);
 
   return (
