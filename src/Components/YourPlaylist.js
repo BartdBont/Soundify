@@ -9,13 +9,15 @@ import "./YourPlaylist.css";
 
 function YourPlaylist({ spotify }) {
 	const [playlist, setPlaylist] = useState();
+	const [edited, setEdited] = useState();
 	const { id } = useParams();
 
 	useEffect(() => {
 		PlaylistService.getPlaylist(id).then((response) => {
 			setPlaylist(response);
 		});
-	}, [id]);
+		setEdited(false);
+	}, [id, edited]);
 
 	const EmptyPlaylist = () => (
 		<div className="emptyPlaylist">
@@ -47,7 +49,7 @@ function YourPlaylist({ spotify }) {
 				</div>
 
 				{playlist?.songs.length ? (
-					playlist?.songs.map((song) => <SongRow search={false} song={song} playlist={playlist}/>)
+					playlist?.songs.map((song) => <SongRow search={false} song={song} playlist={playlist} setEdited={setEdited}/>)
 				) : (
 					<EmptyPlaylist />
 				)}

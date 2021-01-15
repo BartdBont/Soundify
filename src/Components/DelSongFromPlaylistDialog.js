@@ -8,7 +8,7 @@ import React from "react";
 import PlaylistService from "../Services/PlaylistService";
 import "./AddSongToPlaylistDialog.css";
 
-function DelSongFromPlaylistDialog({ openRemove, setOpenRemove, song, playlist }) {
+function DelSongFromPlaylistDialog({ openRemove, setOpenRemove, song, playlist, setEdited }) {
 	const handleClose = () => {
 		setOpenRemove(false);
 	};
@@ -19,6 +19,7 @@ function DelSongFromPlaylistDialog({ openRemove, setOpenRemove, song, playlist }
 			console.log(response);
 		});
 		setOpenRemove(false);
+		setEdited(true);
     };
     
 	return (

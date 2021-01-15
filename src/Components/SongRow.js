@@ -6,16 +6,16 @@ import DelSongFromPlaylistDialog from './DelSongFromPlaylistDialog';
 import './SongRow.css';
 
 
-function SongRow({song, search, playlist}) {
+function SongRow({song, search, playlist, setEdited}) {
     const [anchorEl, setAnchorEl] = useState(null);
     const [open, setOpen] = useState(false);
     const [openRemove, setOpenRemove] = useState(false);
 
     const handleClick = (e) => {
         setAnchorEl(e.currentTarget);
-        if (!e) var a = window.event;
+        if (!e) e = window.event;
         e.cancelBubble = true;
-         if (a.stopPropagation) e.stopPropagation();
+         if (e.stopPropagation) e.stopPropagation();
     };
     
     const handleClose = () => {
@@ -77,7 +77,7 @@ function SongRow({song, search, playlist}) {
 					
 				</Menu>
                 <AddSongToPlaylistDialog open={open} setOpen={setOpen} song={song}/>
-                {!search && <DelSongFromPlaylistDialog openRemove={openRemove} setOpenRemove={setOpenRemove} song={song} playlist={playlist} />}
+                {!search && <DelSongFromPlaylistDialog openRemove={openRemove} setOpenRemove={setOpenRemove} song={song} playlist={playlist} setEdited={setEdited} />}
             </div>
         </div>
     )
