@@ -6,12 +6,24 @@ import * as serviceWorker from "./serviceWorker";
 import { StateProvider } from "./StateProvider";
 import reducer, { initialState } from "./reducer";
 import { BrowserRouter } from "react-router-dom";
+import { positions, transitions, Provider as AlertProvider, types } from "react-alert";
+import AlertTemplate from 'react-alert-template-oldschool-dark';
+
+const options = {
+	position: positions.MIDDLE_RIGHT,
+	timeout: 5000,
+	offset: '7.5px',
+	transition: transitions.SCALE,
+	type: types.SUCCESS
+}
 
 ReactDOM.render(
 	<React.StrictMode>
 		<StateProvider initialState={initialState} reducer={reducer}>
 			<BrowserRouter>
-				<App />
+				<AlertProvider template={AlertTemplate} {...options}>
+					<App />
+				</AlertProvider>
 			</BrowserRouter>
 		</StateProvider>
 	</React.StrictMode>,

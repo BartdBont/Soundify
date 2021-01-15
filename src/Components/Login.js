@@ -102,7 +102,6 @@ function Login() {
 						</Grid>
 					</form>
 				</div>
-				<a href={loginUrl}>LOGIN WITH SPOTIFY</a>
 			</div>
 		</Container>
 	);

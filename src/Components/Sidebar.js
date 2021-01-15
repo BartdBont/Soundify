@@ -9,6 +9,9 @@ import AddIcon from "@material-ui/icons/Add";
 import AddPlaylistDialog from "./AddPlaylistDialog";
 import PlaylistService from "../Services/PlaylistService";
 import { useStateProviderValue } from "../StateProvider";
+import WebsocketService from "../Services/WebsocketService";
+import SockJsClient from 'react-stomp';
+import { useAlert } from "react-alert";
 
 function Sidebar() {
 	let history = useHistory();
@@ -16,6 +19,8 @@ function Sidebar() {
 	const [open, setOpen] = useState(false);
 	const [playlistss, setPlaylistss] = useState();
 	const [edited, setEdited] = useState(false);
+	const [alert, setAlert] = useState("");
+	const alertToShow = useAlert();
 
 	const handleClick = () => {
 		history.push("/");
@@ -35,6 +40,23 @@ function Sidebar() {
 		});
 		setEdited(false);
 	}, [dispatch, edited]);
+
+	useEffect(() => {
+		WebsocketService.connect();
+	}, [])
+
+	useEffect(() => {
+		if (alert !== "")
+		alertToShow.show(alert)
+		setAlert("")
+	}, [alert, alertToShow])
+
+	const apiUrl = "http://localhost:8080/ws";
+
+	const handleMessage = (msg) => {
+		console.log(msg);
+		setAlert(msg);
+	}
 
 	return (
 		<div className="sidebar">
@@ -72,6 +94,14 @@ function Sidebar() {
 					key={id}
 				/>
 			))}
+			{/* <SockJsClient url={apiUrl} topics={["/endpoints/playlist"]} onMessage={(msg) => {handleMessage(msg);}}/> */}
+			<SockJsClient
+                url={apiUrl}
+                topics={[`/endpoint/playlist`]}
+                onMessage={(msg) => {
+                handleMessage(msg);
+                }}
+            />
 		</div>
 	);
 }

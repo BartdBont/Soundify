@@ -26,7 +26,12 @@ function DelSongFromPlaylistDialog({ openRemove, setOpenRemove, song, playlist }
     };
     
 	return (
-		<Dialog open={openRemove} onClose={handleClose} className="dialog">
+		<Dialog open={openRemove} onClose={handleClose} className="dialog" PaperProps={{
+			style: {
+				backgroundColor: 'darkgray',
+				color: 'white'
+			}
+		}}>
 			<DialogTitle>Delete {song.name} from this playlist?</DialogTitle>
 			<DialogActions>
 				<Button onClick={handleClose}>
