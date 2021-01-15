@@ -33,7 +33,7 @@ function YourPlaylist({ spotify }) {
 			<div className="body__info">
 				{/* <img src={discover_weekly?.images[0].url} alt="" /> */}
 				<div className="body__infoText">
-					<strong>PLAYLIST</strong>
+					<strong>PLAYLIST by {playlist?.owner?.username}</strong>
 					<h2>{playlist?.name}</h2>
 					<p>{playlist?.description}</p>
 				</div>
