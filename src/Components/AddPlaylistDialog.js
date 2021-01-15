@@ -1,6 +1,7 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@material-ui/core'
 import React, { useState } from 'react'
 import PlaylistService from '../Services/PlaylistService';
+import WebsocketService from '../Services/WebsocketService';
 
 function AddPlaylistDialog({ open, setOpen, setEdited }) {
     const [name, setName] = useState("");
@@ -18,7 +19,9 @@ function AddPlaylistDialog({ open, setOpen, setEdited }) {
             setEdited(true);
         });
         setOpen(false);
+        WebsocketService.createPlaylist(playlist?.name);
     }
+
     return (
         <Dialog
         open={open}
@@ -50,8 +53,6 @@ function AddPlaylistDialog({ open, setOpen, setEdited }) {
                     Create
                 </Button>
             </DialogActions>
-
-
         </Dialog>
     )
 }

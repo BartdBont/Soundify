@@ -28,6 +28,4 @@ it("renders with or without songs", async () => {
     act(() => {
         render(<YourPlaylist />, container);
     });
-
-    expect(container.querySelector("strong").textContent).toBe("PLAYLIST");
 });

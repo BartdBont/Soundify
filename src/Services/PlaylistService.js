@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiUrl = "http://localhost:8080/spotify/v1/";
-const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiZXhwIjoxNjA2ODY4MDA3LCJpYXQiOjE2MDY4MzIwMDd9.fWQj326lHBU7rwWRSIaGwupQ8BjHPmFxp6YBBcTNP44";
+const token = JSON.parse(localStorage.getItem("user"));
 const instance = axios.create({
     baseURL: apiUrl,
     headers: { Authorization: "Bearer " + token },
@@ -25,6 +25,21 @@ class PlaylistService {
 
     getPlaylist(id) {
         return instance.get(`playlists/${id}`)
+        .then(response => {
+            return response.data;
+        })
+    }
+
+    addSongToPlaylist(song, playlistId) {
+        return instance.post(`playlists/${playlistId}/songs`, song)
+        .then(response => {
+            return response.data;
+        })
+    }
+
+    removeSongFromPlaylist(song, playlistId) {
+        console.log(song.id)
+        return instance.delete(`playlists/${playlistId}/songs/${song.id}`)
         .then(response => {
             return response.data;
         })

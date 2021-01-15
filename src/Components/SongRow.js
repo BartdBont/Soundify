@@ -1,16 +1,43 @@
+import { IconButton, Menu, MenuItem } from '@material-ui/core';
 import { MoreHoriz } from '@material-ui/icons';
-import React from 'react';
-import { useStateProviderValue } from '../StateProvider';
+import React, { useState } from 'react';
+import AddSongToPlaylistDialog from './AddSongToPlaylistDialog';
+import DelSongFromPlaylistDialog from './DelSongFromPlaylistDialog';
 import './SongRow.css';
 
-function SongRow({song}) {
-    const [, dispatch] = useStateProviderValue();
+
+function SongRow({song, search, playlist}) {
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [open, setOpen] = useState(false);
+    const [openRemove, setOpenRemove] = useState(false);
+
+    const handleClick = (e) => {
+        setAnchorEl(e.currentTarget);
+        if (!e) var a = window.event;
+        e.cancelBubble = true;
+         if (a.stopPropagation) e.stopPropagation();
+    };
+    
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+    
+    const addToPlaylist = (e) => {
+        setOpen(true);
+        setAnchorEl(null);
+    };
+    
+    const handleRemove = (e) => {
+        setOpenRemove(true);
+        setAnchorEl(null);
+	};
+
 
     const PlaySong = () => {
-        dispatch({
-            type: 'SET_SONG',
-            song: song
-        })
+        // dispatch({
+        //     type: 'SET_SONG',
+        //     song: song
+        // })
     }
 
     return (
@@ -25,7 +52,32 @@ function SongRow({song}) {
                 
             </div>
             <div className="songRow__options">
-                <MoreHoriz/>
+            <IconButton
+					className="more_options"
+					onClick={handleClick}
+				>
+					<MoreHoriz className="morehoriz" />
+			</IconButton>
+				<Menu
+					id="simple-menu"
+					anchorEl={anchorEl}
+					keepMounted
+					open={Boolean(anchorEl)}
+					onClose={handleClose}
+				>
+					<MenuItem onClick={addToPlaylist}>
+						Add to Playlist...
+					</MenuItem>
+					<MenuItem >
+						View Album
+					</MenuItem>
+                    {!search && <MenuItem color="secondary" onClick={handleRemove}>
+						Remove from this playlist
+					</MenuItem>}
+					
+				</Menu>
+                <AddSongToPlaylistDialog open={open} setOpen={setOpen} song={song}/>
+                {!search && <DelSongFromPlaylistDialog openRemove={openRemove} setOpenRemove={setOpenRemove} song={song} playlist={playlist} />}
             </div>
         </div>
     )

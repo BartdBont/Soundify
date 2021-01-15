@@ -15,7 +15,8 @@ function Body({ spotify }) {
             <Header spotify={spotify} />
 
             <Switch>
-                <Route exact path="/" component={DiscoverWeekly}/>
+                <Route exact path="/home" component={DiscoverWeekly}/>
+                <Route exact path="/Soundify" component={DiscoverWeekly}/>
                 <Route exact path="/your_library" component={YourLibrary}/>
                 <Route exact path="/your_playlist/:id" component={YourPlaylist}/>
                 <Route exact path="/search/:term" component={SearchResult}/>

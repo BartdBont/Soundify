@@ -30,3 +30,21 @@
     height: 40px;
     width: 40px;
 }
+
+.songRow__options {
+    margin-left: auto;
+    margin-right: 5%;
+}
+
+.more_options:hover {
+    background-color: white;
+    color: white;
+}
+
+.morehoriz {
+    color: #1ed15e;
+}
+
+.morehoriz:hover {
+    color: white;
+}

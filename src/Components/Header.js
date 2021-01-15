@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import "./Header.css";
 import SearchIcon from "@material-ui/icons/Search";
-import { Avatar } from "@material-ui/core";
+import { Avatar, Button } from "@material-ui/core";
 import { useStateProviderValue } from "../StateProvider";
 import { useHistory } from "react-router-dom";
+import AuthenticationService from "../Services/AuthenticationService";
 
 function Header() {
 	let history = useHistory();
-	const [{ user },] = useStateProviderValue();
+
+	const [{ user }, ] = useStateProviderValue();
+
 	const [term, setTerm] = useState("");
 
 	const handleKeyDown = (event) => {
@@ -31,8 +34,12 @@ function Header() {
 			</div>
 
 			<div className="header__right">
-				<Avatar src={user?.images[0]?.url} alt={user?.username} />
+				<Avatar src="" alt={user?.username} />
 				<h4>{user?.username}</h4>
+				<Button onClick={() => {
+					AuthenticationService.logout();
+					document.location.reload();
+				}}>Logout</Button>
 			</div>
 		</div>
 	);
