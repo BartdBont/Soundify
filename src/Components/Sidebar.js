@@ -16,7 +16,7 @@ import { useAlert } from "react-alert";
 
 function Sidebar() {
 	let history = useHistory();
-	const [, dispatch] = useStateProviderValue();
+	const [{playlistEdited}, dispatch] = useStateProviderValue();
 	const [open, setOpen] = useState(false);
 	const [playlistss, setPlaylistss] = useState();
 	const [edited, setEdited] = useState(false);
@@ -40,7 +40,15 @@ function Sidebar() {
 			});
 		});
 		setEdited(false);
-	}, [dispatch, edited]);
+		if (playlistEdited) {
+			setAlert("Playlist succesfully deleted!");
+		}
+		dispatch({
+			type: "SET_PLAYLISTEDITED",
+			playlists: false,
+		});
+		console.log(playlistEdited);
+	}, [dispatch, edited, playlistEdited]);
 
 	useEffect(() => {
 		WebsocketService.connect();

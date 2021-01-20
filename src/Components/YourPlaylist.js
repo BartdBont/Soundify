@@ -6,10 +6,14 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import PlaylistService from "../Services/PlaylistService";
 import "./YourPlaylist.css";
+import { Menu, MenuItem } from "@material-ui/core";
+import DeletePlaylistDialog from "./DeletePlaylistDialog";
 
-function YourPlaylist({ spotify }) {
+function YourPlaylist() {
 	const [playlist, setPlaylist] = useState();
+	const [remove, setRemove] = useState();
 	const [edited, setEdited] = useState();
+	const [anchorEl, setAnchorEl] = useState(null);
 	const { id } = useParams();
 
 	useEffect(() => {
@@ -26,8 +30,17 @@ function YourPlaylist({ spotify }) {
 		</div>
 	);
 
-	const handleOptions = () => {
-		//open menu to delete playlist
+	const handleOptions = (e) => {
+		setAnchorEl(e.currentTarget);
+	}
+
+	const handleClose = () => {
+        setAnchorEl(null);
+	};
+	
+	const RemovePlaylist = () => {
+		setAnchorEl(null)
+		setRemove(true);
 	}
 
 	return (
@@ -54,6 +67,18 @@ function YourPlaylist({ spotify }) {
 					<EmptyPlaylist />
 				)}
 			</div>
+			<Menu
+					id="simple-menu"
+					anchorEl={anchorEl}
+					keepMounted
+					open={Boolean(anchorEl)}
+					onClose={handleClose}
+				>
+					<MenuItem onClick={RemovePlaylist}>
+						Delete playlist
+					</MenuItem>
+			</Menu>
+			<DeletePlaylistDialog remove={remove} setRemove={setRemove} playlist={playlist} />
 		</div>
 	);
 }

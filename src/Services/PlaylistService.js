@@ -15,10 +15,16 @@ class PlaylistService {
         })
     }
 
+    deletePlaylist(id) {
+        return instance.delete(`playlists/${id}`)
+        .then(response => {
+            return response.data;
+        })
+    }
+
     getPlaylists() {
         return instance.get("playlists")
         .then(response => {
-            console.log(response.data)
             return response.data;
         })
     }
@@ -38,13 +44,33 @@ class PlaylistService {
     }
 
     removeSongFromPlaylist(song, playlistId) {
-        console.log(song.id)
         return instance.delete(`playlists/${playlistId}/songs/${song.id}`)
         .then(response => {
             return response.data;
         })
     }
 
+    getRecentAlbums() {
+        return instance.get("albums/recent")
+        .then(response => {
+            return response.data;
+        })
+    }
+
+    getAlbum(id) {
+        return instance.get(`albums/${id}`)
+        .then(response => {
+            return response.data;
+        })
+    }
+
+    getAlbumSongs(id) {
+        return instance.get(`albums/${id}/songs`)
+        .then(response => {
+            console.log(response.data)
+            return response.data;
+        })
+    }
 }
 
 export default new PlaylistService();

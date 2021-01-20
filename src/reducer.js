@@ -3,13 +3,13 @@ export const initialState = {
 	playing: false,
 	item: null,
 	song: null,
+	playlistEdited: false,
 	// Remove after finished developing
 	token:
 		"BQAWdy_tf8Wr7yXRIoCElVOCkvxKU0oL4lAIWGFM1Q0WpGPIvVhDZCmj_UjTpOBSRE7tQ72SgLSWvSOOpl15xlIjNtIr62uJhJhQ6EQXGi8yCYd-dZS6E6T09HcL5bngIX7bzO17Ip75IBycoR7nPfIH1m8ziqGL",
 };
 
 const reducer = (state, action) => {
-	console.log(state, action);
 
 	// Action -> type, [payload]
 
@@ -38,7 +38,12 @@ const reducer = (state, action) => {
 			return {
 				...state,
 				song: action.song,
-			}
+			};
+		case "SET_PLAYLISTEDITED":
+			return {
+				...state,
+				playlistEdited: action.playlistEdited,
+			};
 		default:
 			return state;
 	}

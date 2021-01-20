@@ -7,6 +7,7 @@ import SearchResult from './SearchResult';
 import notFoundPage from './notFoundPage';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import DiscoverWeekly from './DiscoverWeekly';
+import AlbumView from './AlbumView';
 
 function Body({ spotify }) {
 
@@ -21,6 +22,7 @@ function Body({ spotify }) {
                 <Route exact path="/your_playlist/:id" component={YourPlaylist}/>
                 <Route exact path="/search/:term" component={SearchResult}/>
                 <Route exact path="/search" component={SearchResult}/>
+                <Route exact path="/album/:id" component={AlbumView}/>
                 {/* <Body spotify={spotify} /> */}
 
                 <Route exact path="/404" component={notFoundPage}/>

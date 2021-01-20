@@ -1,6 +1,7 @@
 import { IconButton, Menu, MenuItem } from '@material-ui/core';
 import { MoreHoriz } from '@material-ui/icons';
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import AddSongToPlaylistDialog from './AddSongToPlaylistDialog';
 import DelSongFromPlaylistDialog from './DelSongFromPlaylistDialog';
 import './SongRow.css';
@@ -10,6 +11,7 @@ function SongRow({song, search, playlist, setEdited}) {
     const [anchorEl, setAnchorEl] = useState(null);
     const [open, setOpen] = useState(false);
     const [openRemove, setOpenRemove] = useState(false);
+    let history = useHistory();
 
     const handleClick = (e) => {
         setAnchorEl(e.currentTarget);
@@ -30,7 +32,12 @@ function SongRow({song, search, playlist, setEdited}) {
     const handleRemove = (e) => {
         setOpenRemove(true);
         setAnchorEl(null);
-	};
+    };
+    
+    const viewAlbum = () => {
+        console.log(song.album.id)
+        // history.push(`album/${song?.album?.id}`)
+    }
 
 
     const PlaySong = () => {
@@ -68,7 +75,7 @@ function SongRow({song, search, playlist, setEdited}) {
 					<MenuItem onClick={addToPlaylist}>
 						Add to Playlist...
 					</MenuItem>
-					<MenuItem >
+					<MenuItem onClick={viewAlbum}>
 						View Album
 					</MenuItem>
                     {!search && <MenuItem color="secondary" onClick={handleRemove}>

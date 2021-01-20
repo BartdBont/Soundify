@@ -1,10 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import PlaylistService from '../Services/PlaylistService';
+import AlbumRow from './AlbumRow';
 
 function DiscoverWeekly() {
+    const [albums, setAlbums] = useState();
+
+    useEffect(() => {
+        PlaylistService.getRecentAlbums().then((response) => {
+            setAlbums(response);
+        })
+    }, [])
+    
     return (
         <div>
             <div className="body__info">
@@ -23,10 +33,11 @@ function DiscoverWeekly() {
                     <MoreHorizIcon/>
                 </div>
 
-                {/* {discover_weekly?.tracks.items.map(item => (
-                    <SongRow track={item.track} />
-                ))} */}
-                {/* {console.log(discover_weekly?.tracks.items)} */}
+                {albums?.length ? (
+					albums?.map((album) => <AlbumRow album={album}/>)
+				) : (
+					<div>empty</div>
+				)}
             </div>
         </div>
     )
